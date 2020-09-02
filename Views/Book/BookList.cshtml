@@ -1,0 +1,18 @@
+﻿@model IEnumerable<BooksCatalogueMVC.Models.Book>
+
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Books Catalogue</title>
+</head>
+<body>
+    @foreach (var book in Model)
+    {
+        <h2>@book.Title</h2>
+        <h3>@book.Author</h3>
+        <b>@book.Category.Description</b>
+        <hr />
+    }
+</body>
+</html>
