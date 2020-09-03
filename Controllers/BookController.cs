@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BooksCatalogueMVC.Models;
+using BooksCatalogueMVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BooksCatalogueMVC.Controllers
@@ -20,11 +21,19 @@ namespace BooksCatalogueMVC.Controllers
 
         public IActionResult BookList()
         {
-            return View(bookRepository.GetAllBooks);
+            BookListVM bookListVM = new BookListVM
+            {
+                Books = bookRepository.GetAllBooks,
+                BookCategoryName = categoryRepository.GetAllCategories.ToList()[0].Name
+            };
+
+            return View(bookListVM);
         }
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+
+        public IActionResult BookDetails(int id)
+        {
+            Book book = bookRepository.GetBookById(id);
+            return View(book);
+        }
     }
 }

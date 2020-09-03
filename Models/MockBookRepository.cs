@@ -20,7 +20,7 @@ namespace BooksCatalogueMVC.Models
         new Book{ BookId = 4, Title = "Stock Investing", Author = "Andrew Dagys", Price = 30, ImageUrl = "https://tinyurl.com/y278bo2q", InStock = true, Category = categoryRepository.GetAllCategories.ToList()[2]},
         new Book{ BookId = 5, Title = "Destinations of a Lifetime", Author = "National Geographic", Price = 40, ImageUrl = "https://tinyurl.com/yxdhgj78", InStock = true, Category = categoryRepository.GetAllCategories.ToList()[3]},
         new Book{ BookId = 6, Title = "Sapiens - A brief History of Humankind", Author = "Yuval Harari", Price = 49, ImageUrl = "https://tinyurl.com/y395x9tp", InStock = true, Category = categoryRepository.GetAllCategories.ToList()[4]},
-        new Book{ BookId = 7, Title = "IELTS General Training", Author = "University of Cambridge", Price = 41, ImageUrl = "https://tinyurl.com/y2hzaoav", InStock = true, Category = categoryRepository.GetAllCategories.ToList()[5]},
+        new Book{ BookId = 7, Title = "IELTS General Training", Author = "University of Cambridge", Price = 41, ImageUrl = "https://tinyurl.com/y2hzaoav", InStock = false, Category = categoryRepository.GetAllCategories.ToList()[5]},
         };
 
         public IEnumerable<Book> FreeBooksOfTheWeek { get; }

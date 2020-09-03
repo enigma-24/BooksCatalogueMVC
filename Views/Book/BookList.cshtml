@@ -1,18 +1,19 @@
-﻿@model IEnumerable<BooksCatalogueMVC.Models.Book>
+﻿@model BookListVM
 
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Books Catalogue</title>
-</head>
-<body>
-    @foreach (var book in Model)
-    {
-        <h2>@book.Title</h2>
-        <h3>@book.Author</h3>
-        <b>@book.Category.Description</b>
-        <hr />
-    }
-</body>
-</html>
+
+<h1>@Model.BookCategoryName</h1>
+<hr />
+@foreach (var book in Model.Books)
+{
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="@book.ImageUrl" alt="@book.Title">
+        <div class="card-body">
+            <h5 class="card-title">@book.Title</h5>
+            <h6 class="card-subtitle">@book.Author</h6>
+            <p class="card-text">@book.Category.Name</p> @*Can add book price here*@
+            <a asp-controller="Book" asp-action="BookDetails" asp-route-id="@book.BookId"
+               class="btn btn-primary">Details</a>
+            <a href="#" class="btn btn-primary">Add To Cart</a>
+        </div>
+    </div>
+}
