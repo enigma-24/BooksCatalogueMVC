@@ -1,0 +1,21 @@
+﻿@model ShoppingCart
+
+    <h2>Shopping Cart</h2>
+    <hr />
+    <table class="table table-bordered">
+        <tr>
+            <th>Book</th>
+            <th>Price</th>
+        </tr>
+        @foreach (var item in Model.ShoppingCartItems)
+        {
+            <tr>
+                <td class="text-left">@item.Book.Title</td>
+                <td class="text-right">@item.Amount</td>
+            </tr>
+        }
+        <tr>
+            <th><b>Total</b></th>
+            <th><b>@Model.GetShoppingCartTotal()</b></th>
+        </tr>
+    </table>

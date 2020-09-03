@@ -29,6 +29,9 @@ namespace BooksCatalogueMVC
             services.AddScoped<ICategoryRepository,EFCategoryRepository>();
             //services.AddScoped<ICategoryRepository, MockCategoryRepository>();
             //services.AddScoped<IBookRepository, MockBookRepository>();
+            services.AddScoped<ShoppingCart>(s => ShoppingCart.GetShoppingCart(s));
+            services.AddHttpContextAccessor();
+            services.AddSession();
             services.AddControllersWithViews();
         }
 
@@ -43,6 +46,8 @@ namespace BooksCatalogueMVC
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 

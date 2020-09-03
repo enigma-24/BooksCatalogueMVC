@@ -13,7 +13,8 @@
                 </p>
                 <p class="card-text">@Model.Category.Name</p>
                 <p class="card-text">@Model.Price</p>
-                <a href="#" class="btn btn-primary">Add To Cart</a>
+                <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-bookId=@Model.BookId 
+                   class="btn btn-primary">Add To Cart</a>
             </div>
         </div>
     </div>

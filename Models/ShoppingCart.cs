@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,29 @@ namespace BooksCatalogueMVC.Models
 
         public void RemoveItemFromCart(Book book)
         {
+            ShoppingCartItem shoppingCartItem = dbContext.ShoppingCartItems.SingleOrDefault(
+                c => c.Book.BookId == book.BookId && c.ShoppingCartId == this.ShoppingCartId);
+            if (shoppingCartItem != null)
+                dbContext.ShoppingCartItems.Remove(shoppingCartItem);
 
+            dbContext.SaveChanges();
+        }
+
+        public List<ShoppingCartItem> GetShoppingCartItems()
+        {
+            return dbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == this.ShoppingCartId).Include(cart => cart.Book).ToList();
+        }
+
+        public decimal GetShoppingCartTotal()
+        {
+            return dbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == this.ShoppingCartId).Select(c => c.Amount).Sum();
+        }
+
+        public void ClearShoppingCart()
+        {
+            var shoppingCartItems = dbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == this.ShoppingCartId);
+            dbContext.ShoppingCartItems.RemoveRange(shoppingCartItems);
+            dbContext.SaveChanges();
         }
     }
 }
